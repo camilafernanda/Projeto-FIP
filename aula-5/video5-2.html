@@ -65,7 +65,7 @@
             }
 
             let valorINSS = document.querySelector(".valor-inss");
-            valorINSS.textContent = "R$ " + inss;
+            valorINSS.textContent = "R$ " + parseFloat(inss.toFixed(2));
 
             let aliquota = 0;
             let deducao = 0;
@@ -90,11 +90,11 @@
             let irrf = ((salarioBruto - quantidadeDependentes - inss) * aliquota) - deducao;
 
             let valorIRRF = document.querySelector(".imposto-renda");
-            valorIRRF.textContent = "R$ " + irrf;
+            valorIRRF.textContent = "R$ " + parseFloat(irrf.toFixed(2));
             
             let salarioLiquido = salarioBruto - (irrf + inss);
             let valorSalarioLiquido = document.querySelector(".salario-liquido");
-            valorSalarioLiquido.textContent = "R$ " + salarioLiquido;
+            valorSalarioLiquido.textContent = "R$ " + parseFloat(salarioLiquido.toFixed(2));
         };
     </script>
 </html>
