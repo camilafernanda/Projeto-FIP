@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="visual.css">
+        <title>Calculadora de salário</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Salário Líquido</title>
-</head>
+    <body>
+        <form action="#">
+            <h2>Calculadora de salário líquido</h2>
+            <p>Apenas com as informações de seu <strong>salário bruto</strong> e o <strong>número de dependentes</strong>, podemos calcular seu salário líquido!</p>
+            <div>
+                <label for="salario-bruto">Salário bruto</label>
+                <input id="salario-bruto" required placeholder="Digite o salário bruto" />
+            </div>
 
-<body>
-    <h1>Calculadora de Salário Líquido</h1>
+            <div>
+                <label for="qtd-dependentes">Quantidade de dependentes</label>
+                <input id="qtd-dependentes" required placeholder="Digite a quantidade de dependentes" />
+            </div>
 
-    <form action="#">
+            <button>Calcular</button>
+        </form>
 
-        <label for="nome">Nome</label>
-        <input id="nome" placeholder="Digite o seu nome" />
-
-        <label for="salario-bruto">Salário bruto</label>
-        <input id="salario-bruto" placeholder="Digite o salário bruto" />
-
-        <label for="qtd-dependentes">Quantidade de dependentes</label>
-        <input id="qtd-dependentes" placeholder="Digite a quantidade de dependentes" />
-
-        <button>Calcular</button>
-
-    </form>
-
-    <h2>Resultado</h2>
+        <h2>Resultado</h2>
         <table>
             <tr>
                 <td>Bruto</td>
@@ -46,12 +43,11 @@
             </tr>
         </table>
     </body>
-
+    
     <script>
-        document.querySelector("button").onclick = function () {
-            let nome = document.querySelector("#nome").value;
+        document.querySelector("button").onclick = function() {
             let salarioBruto = document.querySelector("#salario-bruto").value;
-            let numeroDependentes = document.querySelector("#qtd-dependentes").value;
+            let quantidadeDependentes = document.querySelector("#qtd-dependentes").value;
 
             let valorSalarioBruto = document.querySelector(".salario-bruto");
             valorSalarioBruto.textContent = "R$ " + salarioBruto;
@@ -69,7 +65,7 @@
             }
 
             let valorINSS = document.querySelector(".valor-inss");
-            valorINSS.textContent = "R$ " + inss;
+            valorINSS.textContent = "R$ " + parseFloat(inss.toFixed(2));
 
             let aliquota = 0;
             let deducao = 0;
@@ -91,18 +87,14 @@
                 deducao = 869.36;
             }
 
-
-            let irrf = ((salarioBruto - numeroDependentes - inss) * aliquota) - deducao;
+            let irrf = ((salarioBruto - quantidadeDependentes - inss) * aliquota) - deducao;
 
             let valorIRRF = document.querySelector(".imposto-renda");
-            valorIRRF.textContent = "R$ " + irrf;
+            valorIRRF.textContent = "R$ " + parseFloat(irrf.toFixed(2));
             
             let salarioLiquido = salarioBruto - (irrf + inss);
-
             let valorSalarioLiquido = document.querySelector(".salario-liquido");
-            valorSalarioLiquido.textContent = "R$ " + salarioLiquido;
-        }
+            valorSalarioLiquido.textContent = "R$ " + parseFloat(salarioLiquido.toFixed(2));
+        };
     </script>
-</body>
-
 </html>
