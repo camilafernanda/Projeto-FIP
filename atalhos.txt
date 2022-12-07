@@ -1,0 +1,3 @@
+Shift + Alt + baixo - copiar a linha de cima p/ baixo
+Ctrl + ; - comentar a linha
+Alt + Shift + F - indentar
