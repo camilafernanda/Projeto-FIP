@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salário Líquido</title>
+</head>
+
+<body>
+    <h1>Calculadora de Salário Líquido</h1>
+
+    <form action="#">
+
+        <label for="nome">Nome</label>
+        <input id="nome" placeholder="Digite o seu nome" />
+
+        <label for="salario-bruto">Salário bruto</label>
+        <input id="salario-bruto" placeholder="Digite o salário bruto" />
+
+        <label for="qtd-dependentes">Quantidade de dependentes</label>
+        <input id="qtd-dependentes" placeholder="Digite a quantidade de dependentes" />
+
+        <button onclick="alert('Dados preenchidos com sucesso!')">Calcular</button>
+
+    </form>
+
+    <h2>Resultado</h2>
+        <table>
+            <tr>
+                <td>Bruto</td>
+                <td class="salario-bruto">R$0,00</td>
+            </tr>
+            <tr>
+                <td>INSS</td>
+                <td class="valor-inss">R$0,00</td>
+            </tr>
+            <tr>
+                <td>IRRF</td>
+                <td class="imposto-renda">R$0,00</td>
+            </tr>
+            <tr>
+                <td>LÍQUIDO</td>
+                <td class="salario-liquido">R$0,00</td>
+            </tr>
+        </table>
+    </body>
+
+    <script>
+        document.querySelector("button").onclick = function () {
+            let nome = document.querySelector("#nome").value;
+            let salarioBruto = document.querySelector("#salario-bruto").value;
+            let numeroDependentes = document.querySelector("#qtd-dependentes").value;
+
+            let valorSalarioBruto = document.querySelector(".salario-bruto");
+            valorSalarioBruto.textContent = "R$ " + salarioBruto;
+
+            let inss = 0;
+
+            if (salarioBruto <= 1751.81) {
+                inss = 0.08 * salarioBruto;
+            } else if (salarioBruto <= 2919.72) {
+                inss = 0.09 * salarioBruto;
+            } else if (salarioBruto <= 5839.45) {
+                inss = 0.11 * salarioBruto;
+            } else if (salarioBruto > 5839.45) {
+                inss = 642.34;
+            }
+
+            alert("O valor do INSS é " + inss);
+
+            let aliquota = 0;
+            let deducao = 0;
+
+            if (salarioBruto <= 1903.98) {
+                aliquota = 0;
+                deducao = 0;
+            } else if (salarioBruto <= 2826.65) {
+                aliquota = 0.075;
+                deducao = 142.80;
+            } else if (salarioBruto <= 3751.05) {
+                aliquota = 0.15;
+                deducao = 354.80;
+            } else if (salarioBruto <= 4664.68) {
+                aliquota = 0.225;
+                deducao = 636.13;
+            } else if (salarioBruto > 4664.68) {
+                aliquota = 0.275;
+                deducao = 869.36;
+            }
+
+            // alert("A alíquota é " + aliquota + "e a dedução é " + deducao);
+
+            let irrf = ((salarioBruto - numeroDependentes - inss) * aliquota) - deducao;
+
+            alert("O valor do IRRF é " + irrf);
+            
+            let salarioLiquido = salarioBruto - (irrf + inss);
+
+            alert("O valor do Salário Líquido é " + salarioLiquido);
+        }
+    </script>
+</body>
+
+</html>
