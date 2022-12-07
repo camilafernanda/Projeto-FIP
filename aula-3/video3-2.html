@@ -22,15 +22,20 @@
         <label for="qtd-dependentes">Quantidade de dependentes</label>
         <input id="qtd-dependentes" placeholder="Digite a quantidade de dependentes" />
 
+        <button onclick="alert('Dados preenchidos com sucesso!')">Calcular</button>
+
     </form>
 
     <script>
-        // let nome = window.prompt("Qual o seu nome?");
-        // let salarioBruto = window.prompt("Qual o seu salário bruto?");
-        // let numeroDependentes = window.prompt("Quantos dependentes você possui?");
-        // document.write(nome + "<br>");
-        // document.write(salarioBruto + "<br>");
-        // document.write(numeroDependentes);
+        document.querySelector("button").onclick = function () {
+            let nome = document.querySelector("#nome").value;
+            let salarioBruto = document.querySelector("#salario-bruto").value;
+            let numeroDependentes = document.querySelector("#qtd-dependentes").value;
+
+            document.write(nome + "<br>");
+            document.write(salarioBruto + "<br>");
+            document.write(numeroDependentes);
+        }
     </script>
 </body>
 
