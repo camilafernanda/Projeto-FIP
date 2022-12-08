@@ -13,17 +13,17 @@
 
             <div>
                 <label for="nome">Nome</label>
-                <input id="nome" placeholder="Digite o seu nome" />
+                <input id="nome" required placeholder="Digite o seu nome" type="text"/>
             </div>
 
             <div>
                 <label for="salario-bruto">Salário bruto</label>
-                <input id="salario-bruto" placeholder="Digite o salário bruto" />
+                <input id="salario-bruto" required placeholder="Digite o salário bruto" type="number"/>
             </div>
 
             <div>
                 <label for="qtd-dependentes">Quantidade de dependentes</label>
-                <input id="qtd-dependentes" placeholder="Digite a quantidade de dependentes" />
+                <input id="qtd-dependentes" required placeholder="Digite a quantidade de dependentes" type="number"/>
             </div>
 
             <button>Calcular</button>
@@ -57,7 +57,7 @@
             let quantidadeDependentes = document.querySelector("#qtd-dependentes").value;
 
             let valorSalarioBruto = document.querySelector(".salario-bruto");
-            valorSalarioBruto.textContent = "R$ " + salarioBruto;
+            valorSalarioBruto.textContent = "R$ " + salarioBruto.toLocaleString('PT');
 
             let inss = 0;
 
@@ -72,7 +72,7 @@
             }
 
             let valorINSS = document.querySelector(".valor-inss");
-            valorINSS.textContent = "R$ " + inss;
+            valorINSS.textContent = "R$ " + parseFloat(inss.toFixed(2)).toLocaleString('PT');
 
             let aliquota = 0;
             let deducao = 0;
@@ -97,11 +97,11 @@
             let irrf = ((salarioBruto - quantidadeDependentes - inss) * aliquota) - deducao;
 
             let valorIRRF = document.querySelector(".imposto-renda");
-            valorIRRF.textContent = "R$ " + irrf;
+            valorIRRF.textContent = "R$ " + parseFloat(irrf.toFixed(2)).toLocaleString('PT');
             
             let salarioLiquido = salarioBruto - (irrf + inss);
             let valorSalarioLiquido = document.querySelector(".salario-liquido");
-            valorSalarioLiquido.textContent = "R$ " + salarioLiquido;
+            valorSalarioLiquido.textContent = "R$ " + parseFloat(salarioLiquido.toFixed(2)).toLocaleString('PT');
         };
     </script>
 </html>
