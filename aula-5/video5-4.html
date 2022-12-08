@@ -56,6 +56,10 @@
             let salarioBruto = document.querySelector("#salario-bruto").value;
             let quantidadeDependentes = document.querySelector("#qtd-dependentes").value;
 
+            if (salarioBruto < 998) {
+                alert("Para calcular o salário líquido, o mínimo deve ser um salário mínimo.");
+            }
+
             let valorSalarioBruto = document.querySelector(".salario-bruto");
             valorSalarioBruto.textContent = "R$ " + salarioBruto.toLocaleString('PT');
 
